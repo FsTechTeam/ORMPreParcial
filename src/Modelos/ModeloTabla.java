@@ -7,46 +7,62 @@ package Modelos;
 
 import javax.swing.table.AbstractTableModel;
 import Interfaces.*;
+import Persistence.Persona;
+import java.util.List;
 import ormpreparcial.Observador;
 /**
  *
  * @author Vader33
  */
-public class ModeloTabla extends AbstractTableModel implements Sujeto {
 
+public class ModeloTabla extends  AbstractTableModel {
+    private List<Persona> personas;
+    private String columnas[] = {"Nombre", "Apellido", "Edad"};
     @Override
-    public int getRowCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getRowCount() {//Le devuleve a la interfaz grafica cuantos elementos tiene en la lista
+        return  personas.size();
     }
-
     @Override
     public int getColumnCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return columnas.length;
     }
-
     @Override
-    public Object getValueAt(int i, int i1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Object getValueAt(int rowIndex, int columnIndex) {// saca cada uno d elos valores de las columnas
+        Persona usr = this.personas.get(rowIndex);
+        switch(columnIndex){
+            case 0:
+                return usr.getNombre();
+            case 1:
+                return usr.getApellido();
+            case 2: 
+                return usr.getEdad();
+        }
+        return null;
     }
-
+    public ModeloTabla(List<Persona> usuarios) {
+        this.personas = usuarios;
+    }
     @Override
-    public void agregar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getColumnName(int column) {
+        
+        
+        return null;
     }
-
     @Override
-    public void eliminar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean isCellEditable(int rowIndex, int columnsIndex){
+        
+        return true;
     }
-
     @Override
-    public void notificar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        switch(columnIndex){
+            case 0: 
+                personas.get(rowIndex).setNombre((String)aValue);
+            case 1: 
+                personas.get(rowIndex).setApellido((String)aValue);
+            case 2: 
+                personas.get(rowIndex).setEdad(Integer.parseInt(aValue.toString()));
+        
+        }
     }
-
-    @Override
-    public void agregarObservador(Observador observador) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }
