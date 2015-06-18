@@ -12,7 +12,7 @@ import ormpreparcial.Observador;
  *
  * @author Geek
  */
-public abstract class Sujeto {
+public interface Sujeto {
     public List<Observador> observadoresList = new ArrayList<>();
     public abstract void agregar();
     public abstract void eliminar();

@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  *
  * @author Geek
  */
-public class ClaseCli extends Sujeto{
+public class ClaseCli implements Sujeto{
     
     
     private static ClaseCli instancia=null;
@@ -38,7 +38,7 @@ public class ClaseCli extends Sujeto{
     Persona nuevaPersona = new Persona();
     String nombre, apellido;
     int edad;
-    
+   
     public void agregar(Persona objeto){
         controlador.create(objeto);
     }

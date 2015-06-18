@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author Geek
  */
-public class Orm extends Sujeto{
+public class Orm implements Sujeto{
     
     List<Observador> observadoresLista;
     private static Orm  instancia =null;
