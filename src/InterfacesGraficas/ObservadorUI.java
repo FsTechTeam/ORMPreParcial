@@ -33,8 +33,8 @@ public class ObservadorUI extends javax.swing.JFrame implements Observador{
     public ObservadorUI(TableModel modelo) {
         initComponents();
         jTable1.setModel(modelo);
-        this.modelo=modelo;
-        ClaseCli.getInstance().agregarObservador(this);//Se agrego como observador
+        ClaseCli.getInstance().agregarObservador(this);
+       //Se agrego como observador
     }
 
     /**
@@ -89,6 +89,7 @@ public class ObservadorUI extends javax.swing.JFrame implements Observador{
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -114,8 +115,9 @@ public class ObservadorUI extends javax.swing.JFrame implements Observador{
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            public void run() {                
                 new ObservadorUI().setVisible(true);
+                
             }
         });
     }
@@ -134,7 +136,9 @@ public class ObservadorUI extends javax.swing.JFrame implements Observador{
         q = em.createNamedQuery("Usuario.findNombreLike");//Para llamar a una query, se cargan los datos de esa query
         q.setParameter("nombre", "L%");// nombre del parametro, valor
         personas = q.getResultList();
-        jTable1.setModel(modelo);
+         String columnas[] = {"nombre", "apellido", "edad"};
+        abstractModel tab=new abstractModel (personas,columnas);
+        jTable1.setModel(tab);
     }
     public class abstractModel extends AbstractTableModel{
         List<Persona> listaPersonas;
